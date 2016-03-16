@@ -1,4 +1,4 @@
-# Rails fat controllers
+# Rails Model Methods
 
 This app demonstrates the pitfalls of implementing fat controllers.
 
@@ -6,14 +6,13 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 * Move code that belongs in models out of the controller.
 
-
 ## How you'll get there
 
 * You'll get the model spec examples to pass
 * Use `ActiveRecord` methods to accomplish this.
 * You'll also need to create a migration! :shipit:
 
-## Before you start
+## Getting Started
 
 ### After you've forked and cloned this repo
 
@@ -27,25 +26,30 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 ### Person.all_email_domains
 
-* **Note: You'll want to do this first**
+* **Note**: Do this First
 
-* **Pro-tip**: You'll need to create a migration that will add the `domain_name`field as a `string` to the `people` table
-	* Make sure to run your migrations, and prepare the test database
+* You'll need to create a migration that will add the `domain_name`field as a `string` to the `people` table
+	* **Pro-tip**: Make sure to run your migrations, and prepare the test database
 
 * Populate all instances of `people` with their appropriate `domain_names`
 	- **Hint**: What property of `people` could you grab data from?
 	- **Hint**: How could you modify that data to only capture the appropriate `domain_name`?
 
-* To get a quick refresher on how to generate a migration, check this out:
-[http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration)
-
-* You'll want to select distinct domain names :) Look up how to do it here: [http://guides.rubyonrails.org/active_record_querying.html#selecting-specific-fields](http://guides.rubyonrails.org/active_record_querying.html#selecting-specific-fields)
+* To get a quick refresher on how to generate a migration, check out the [guides](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration)
 
 ### Person.find_all_with_email_domain
 
-	* **Pro-tip**: Your method should take one argument representing a domain.
-	 * Think about what you want to return, based on the test conditions
+	* Your method should take one argument representing a domain.
+	* The return of the method should be all instances of `Person` that match that given domain, or return everyone
 
-## Resources used
+## Bonus
+
+Research Rails [Validations](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration) and [Active Record Callbacks](http://guides.rubyonrails.org/active_record_callbacks.html) to look into how to control for user input
+
+* Make all the pending tests active by `removing` the `x` from `xit` in `spec/models/person_spec.rb`
+
+* Get the appropriate tests to pass by implementing instance methods to run on callbacks that will `sanitize email` input and auto `generate a domain name` if no `domain_name` exists
+
+### Resources used
 
 Thanks [http://www.briandunning.com/sample-data/](http://www.briandunning.com/sample-data/) for the sample data!

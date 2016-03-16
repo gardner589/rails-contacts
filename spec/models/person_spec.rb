@@ -52,7 +52,6 @@ describe Person do
   end
 
   describe :generate_domain_name do
-
     context 'each person without a domain name ' do
       before do
         @jill = Person.create({ first_name: 'Jill', last_name: 'Jane', email: 'jill.jane@gmail.com', domain_name: nil })
