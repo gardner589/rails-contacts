@@ -11,13 +11,15 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 * You'll get the model spec examples to pass
 * Use `ActiveRecord` methods to accomplish this.
-* You'll also need to create a couple of migrations! :shipit:
+* You'll also need to create a migration! :shipit:
 
 ## Before you start
 
 ### After you've forked and cloned this repo
 
-* Run `bundle install` and `rake db:migrate` at the terminal
+* Run `bundle install`, `rake db:migrate`, and `rake db:test:prepare` at the terminal
+> `rake db:test:prepare` just checks to see if there are any pending migrations for our test database, and make sure our test environment and development environment are in-sync when we run our tests.
+
 * Run `rake db:seed` at the terminal to populate the db with seed data
 	* Take a look at the file `db/seeds.rb` to see how this actually works
 
@@ -28,6 +30,7 @@ This app demonstrates the pitfalls of implementing fat controllers.
 * **Note: You'll want to do this first**
 
 * **Pro-tip**: You'll need to create a migration that will add the `domain_name`field as a `string` to the `people` table
+	* Make sure to run your migrations, and prepare the test database
 
 * Populate all instances of `people` with their appropriate `domain_names`
 	- **Hint**: What property of `people` could you grab data from?
@@ -39,6 +42,9 @@ This app demonstrates the pitfalls of implementing fat controllers.
 * You'll want to select distinct domain names :) Look up how to do it here: [http://guides.rubyonrails.org/active_record_querying.html#selecting-specific-fields](http://guides.rubyonrails.org/active_record_querying.html#selecting-specific-fields)
 
 ### Person.find_all_with_email_domain
+
+	* **Pro-tip**: Your method should take one argument representing a domain.
+	 * Think about what you want to return, based on the test conditions
 
 ## Resources used
 
