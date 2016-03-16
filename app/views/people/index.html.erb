@@ -1,26 +1,6 @@
 <h2>Contacts</h2>
 
 <div class='row'>
-  <div class='col-md-3'>
-    <h3>Filters</h3>
-    <h4>By domain</h4>
-    <div class='btn-group-vertical'>
-      <a href='<%= people_path %>'
-        type='button' 
-        class='btn btn-default 
-          <%= 'btn-primary btn-active' if @email_domain == 'All' %>
-          btn-sm'
-        >All</a>
-      <% @email_domains.each do |domain| %>
-        <a href='<%= people_with_domain_path(domain) %>'
-          type='button'
-          class='btn btn-default 
-          <%= 'btn-primary btn-active' if @email_domain == domain %>
-          btn-sm'
-          ><%= domain %></a>
-      <% end %>
-    </div>
-  </div>
 
   <div class='col-md-9'>
     <table class='table table-striped'>
@@ -34,8 +14,29 @@
         <td><%= person.last_name %></td>
         <td><%= person.email %></td>
         <td><%= person.phone %></td>
-      </tr>  
-    <% end %> 
+      </tr>
+    <% end %>
     </table>
+  </div>
+
+  <div class='col-md-3'>
+    <h3>Filters</h3>
+    <h4>By domain</h4>
+    <div class='btn-group-vertical'>
+      <a href='<%= people_path %>'
+        type='button'
+        class='btn btn-default
+          <%= 'btn-primary btn-active' if @email_domain == 'All' %>
+          btn-sm'
+        >All</a>
+      <% @email_domains.each do |domain| %>
+        <a href='/people?email_domain=<%= domain %>'
+          type='button'
+          class='btn btn-default
+          <%= 'btn-primary btn-active' if @email_domain == domain %>
+          btn-sm'
+          ><%= domain %></a>
+      <% end %>
+    </div>
   </div>
 </div>

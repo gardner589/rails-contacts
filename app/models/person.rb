@@ -1,23 +1,32 @@
 class Person < ActiveRecord::Base
-  def self.find_all_with_email_domain domain=nil
-    return [] if domain == nil
-    return all if domain == 'All'
+  # incorporates validations to make sure email is present and unique
+  validates :email, presence: true, uniqueness: true
 
-    where(domain_name: domain)
+  # utilize ActiveRecord callbacks to control for user input
+  before_save :sanitize_email
+  before_save :generate_domain_name
+
+  # returns an array of all unique email domains sorted alphabetically
+  def self.all_email_domains
+    all_email_domains = self.all.map{|person| person.domain_name}.uniq.sort
   end
 
-  def self.all_email_domains
-    # first, you'll need to create a migration to create a 
-    # separate column, which will contain the domain names 
-    # for each person 
-    #
-    # second, you'll need to create a migration that will
-    # insert the domain names into the domain name field
-    # by first extracting the domain names
-    #
-    # then, you'll need to figure out how to return 
-    # distinct domain names with sql
+  # given a domain, will return all people that have that domain, or everyone is domain is `All`
+  def self.find_all_with_email_domain(domain)
+    if domain
+      domain == "All" ? self.all : self.where(domain_name: domain)
+    else
+      []
+    end
+  end
 
-    Person.select(:domain_name).distinct.map { |p| p.domain_name }
+  # Method to run before a model is saved to generate a domain name
+  def generate_domain_name
+    self.domain_name = self.email.split("@").last
+  end
+
+  # Method to run before a model is saved to control for case sensitivity
+  def sanitize_email
+    self.email = self.email.downcase
   end
 end
