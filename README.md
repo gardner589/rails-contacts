@@ -39,8 +39,8 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 ### Person.find_all_with_email_domain
 
-	* Your method should take one argument representing a domain.
-	* The return of the method should be all instances of `Person` that match that given domain, or return everyone
+*  Your method should take one argument representing a domain.
+*  The return of the method should be all instances of `Person` that match that given domain, or return everyone if passed `All`
 
 ## Bonus
 
