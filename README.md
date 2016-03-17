@@ -16,7 +16,7 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 ### After you've forked and cloned this repo
 
-* Run `bundle install`, `rake db:migrate`, and `rake db:test:prepare` at the terminal
+* Run `bundle install`, `rake db:create`, `rake db:migrate`, and `rake db:test:prepare` at the terminal
 > `rake db:test:prepare` just checks to see if there are any pending migrations for our test database, and make sure our test environment and development environment are in-sync when we run our tests.
 
 * Run `rake db:seed` at the terminal to populate the db with seed data
@@ -29,11 +29,14 @@ This app demonstrates the pitfalls of implementing fat controllers.
 * **Note**: Do this First
 
 * You'll need to create a migration that will add the `domain_name`field as a `string` to the `people` table
-	* **Pro-tip**: Make sure to run your migrations, and prepare the test database
+	>  **Pro-tip**: Make sure to run your migrations, and prepare the test database
 
-* Populate all instances of `people` with their appropriate `domain_names`
-	- **Hint**: What property of `people` could you grab data from?
-	- **Hint**: How could you modify that data to only capture the appropriate `domain_name`?
+* Populate all instances of `People` with the appropriate `domain_name`
+	> **Hint**: What current property of `people` has data you could draw from?
+
+	> **Hint**: How could you modify that data to only capture the appropriate `domain_name`?
+
+	> Look at the current implementations in the `person_controller.rb`
 
 * To get a quick refresher on how to generate a migration, check out the [guides](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration)
 
@@ -42,13 +45,16 @@ This app demonstrates the pitfalls of implementing fat controllers.
 *  Your method should take one argument representing a domain.
 *  The return of the method should be all instances of `Person` that match that given domain, or return everyone if passed `All`
 
-## Bonus
+# Bonus
 
 Research Rails [Validations](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration) and [Active Record Callbacks](http://guides.rubyonrails.org/active_record_callbacks.html) to look into how to control for user input
 
-* Make all the pending tests active by `removing` the `x` from `xit` in `spec/models/person_spec.rb`
+* Make all the pending tests active by removing the `x` from `xit` on lines 60, 64, and 76 in `spec/models/person_spec.rb`
 
-* Get the appropriate tests to pass by implementing instance methods to run on callbacks that will `sanitize email` input and auto `generate a domain name` if no `domain_name` exists
+* Get the appropriate tests to pass by defining `sanitize_email` and `generate_domain_name` as instance methods.
+	* `sanitize_email` should make all emails a uniform case
+	* `generate_domain_name` will add a `domain_name` to a `person` if they are created without one
+* Use these methods as Active Record callbacks.
 
 ### Resources used
 
