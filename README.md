@@ -4,7 +4,7 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 ## Goal
 
-* Move code that belongs in models out of the controller.
+* Move code that belongs in the **model** out of the **controller**.
 
 ## How you'll get there
 
@@ -14,17 +14,25 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 ## Getting Started
 
-### After you've forked and cloned this repo
+### After you've cloned this repo
 
-* Run `bundle install`, `rake db:create`, `rake db:migrate`, and `rake db:test:prepare` at the terminal
+* From the app's root directory, run:
+
+```bash
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+$ rake db:test:prepare
+```
+
 > `rake db:test:prepare` just checks to see if there are any pending migrations for our test database, and make sure our test environment and development environment are in-sync when we run our tests.
 
-* Run `rake db:seed` at the terminal to populate the db with seed data
-	* Take a look at the file `db/seeds.rb` to see how this actually works
+* Take a look at the file `db/seeds.rb` to see how we are seeding the database
 
-## Get the specs to pass for
+## Then get the specs to pass for
 
-### Person.all_email_domains
+### `Person.all_email_domains`
 
 * **Note**: Do this First
 
@@ -40,9 +48,9 @@ This app demonstrates the pitfalls of implementing fat controllers.
 
 * To get a quick refresher on how to generate a migration, check out the [guides](http://guides.rubyonrails.org/migrations.html#creating-a-standalone-migration)
 
-### Person.find_all_with_email_domain
+### `Person.find_all_with_email_domain`
 
-*  Your method should take one argument representing a domain.
+*  Your method should take one argument representing a `domain`.
 *  The return of the method should be all instances of `Person` that match that given domain, or return everyone if passed `All`
 
 # Bonus
